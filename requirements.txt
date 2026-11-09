@@ -1,0 +1,10 @@
+# Pin exact versions after your first successful Colab run (pip freeze | grep -iE "torch|timm|scikit|pydicom|streamlit")
+torch
+timm
+pydicom
+pillow
+numpy
+pandas
+scikit-learn
+matplotlib
+streamlit

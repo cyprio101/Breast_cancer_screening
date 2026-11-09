@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "breast-cancer-screening"
+version = "0.1.0"
+description = "Interpretable concept-bottleneck mammography lesion classifier (research prototype)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Kalule Cyprian Ateesa Kawooya" }]
+dependencies = ["numpy", "pillow", "pydicom", "scikit-learn", "timm", "torch"]
+
+[project.urls]
+Repository = "https://github.com/cyprio101/Breast_cancer_screening"
+
+[project.optional-dependencies]
+app = ["streamlit", "matplotlib", "pandas"]
+dev = ["pytest", "ruff", "matplotlib", "pandas"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 120
+extend-exclude = ["notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

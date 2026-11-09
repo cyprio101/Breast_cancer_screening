@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Breast cancer screening: an interpretable concept-bottleneck mammography second reader"
+type: software
+version: 0.1.0
+authors:
+  - family-names: "Kalule"
+    given-names: "Cyprian Ateesa Kawooya"
+repository-code: "https://github.com/cyprio101/Breast_cancer_screening"
+license: MIT
