@@ -1,6 +1,9 @@
+import os
+
 import numpy as np
 import pandas as pd
 import streamlit as st
+from huggingface_hub import hf_hub_download
 from matplotlib import colormaps
 from PIL import Image, ImageDraw
 
@@ -14,16 +17,19 @@ st.warning(
 )
 
 
+WEIGHTS_REPO = "cyprio101/breast-cancer-screening-cbm"  # Hugging Face model repo holding mammo_cbm_bundle.pt
+
+
 @st.cache_resource
-def get_bundle(path):
+def get_bundle():
+    path = hf_hub_download(repo_id=WEIGHTS_REPO, filename="mammo_cbm_bundle.pt", token=os.environ.get("HF_TOKEN"))
     return M.load_bundle(path)
 
 
-path = st.sidebar.text_input("Model bundle", "models/mammo_cbm_bundle.pt")
 try:
-    b = get_bundle(path)
+    b = get_bundle()
 except Exception as e:
-    st.error(f"Could not load model bundle '{path}': {e}")
+    st.error(f"Could not load the model weights from '{WEIGHTS_REPO}': {e}")
     st.stop()
 st.sidebar.caption(
     "Images are processed in memory only. Nothing is stored or logged. "

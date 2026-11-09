@@ -1,0 +1,12 @@
+{
+  "dataset": "CBIS-DDSM",
+  "lesions_train": 1967,
+  "test_auc": 0.7462667614790736,
+  "test_auc_ci": [
+    0.6943924677342083,
+    0.7929610043810706
+  ],
+  "conformal_alpha": 0.1,
+  "intended_use": "research prototype, ROI-based second reader, not for clinical use",
+  "external_validation": "NOT DONE"
+}

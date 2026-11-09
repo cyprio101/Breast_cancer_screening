@@ -1,0 +1,17 @@
+numpy
+pillow
+pydicom
+scikit-learn
+timm
+torch
+
+[app]
+streamlit
+matplotlib
+pandas
+
+[dev]
+pytest
+ruff
+matplotlib
+pandas
