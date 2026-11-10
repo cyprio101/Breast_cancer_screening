@@ -1,4 +1,6 @@
 import os
+import sys
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -7,7 +9,11 @@ from huggingface_hub import hf_hub_download
 from matplotlib import colormaps
 from PIL import Image, ImageDraw
 
-import mammo_cbm as M
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))  # works without installing the package
+import mammo_cbm as M  # noqa: E402
+
+LOCAL_BUNDLE = Path("models/mammo_cbm_bundle.pt")
+WEIGHTS_REPO = "cyprio/breast-cancer-screening-cbm"  # Hugging Face model repo with the trained bundle
 
 st.set_page_config(page_title="Mammography second reader", layout="wide")
 st.title("Mammography lesion second reader")
@@ -17,11 +23,11 @@ st.warning(
 )
 
 
-WEIGHTS_REPO = "cyprio/breast-cancer-screening-cbm"  # Hugging Face model repo holding mammo_cbm_bundle.pt
-
-
 @st.cache_resource
 def get_bundle():
+    """Use a local bundle if present (development), otherwise download it from the Hugging Face model repo."""
+    if LOCAL_BUNDLE.exists():
+        return M.load_bundle(LOCAL_BUNDLE)
     path = hf_hub_download(repo_id=WEIGHTS_REPO, filename="mammo_cbm_bundle.pt", token=os.environ.get("HF_TOKEN"))
     return M.load_bundle(path)
 
@@ -29,7 +35,7 @@ def get_bundle():
 try:
     b = get_bundle()
 except Exception as e:
-    st.error(f"Could not load the model weights from '{WEIGHTS_REPO}': {e}")
+    st.error(f"Could not load the model weights: {e}")
     st.stop()
 st.sidebar.caption(
     "Images are processed in memory only. Nothing is stored or logged. "
