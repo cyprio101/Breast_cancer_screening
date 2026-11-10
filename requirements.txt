@@ -1,7 +1,10 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch
-streamlit
-matplotlib
+timm
+pydicom
+pillow
+numpy
 pandas
+matplotlib
+streamlit
 huggingface_hub
-git+https://github.com/cyprio101/Breast_cancer_screening.git@v0.1.0
