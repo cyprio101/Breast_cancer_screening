@@ -17,7 +17,7 @@ st.warning(
 )
 
 
-WEIGHTS_REPO = "cyprio101/breast-cancer-screening-cbm"  # Hugging Face model repo holding mammo_cbm_bundle.pt
+WEIGHTS_REPO = "cyprio/breast-cancer-screening-cbm"  # Hugging Face model repo holding mammo_cbm_bundle.pt
 
 
 @st.cache_resource
